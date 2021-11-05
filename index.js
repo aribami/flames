@@ -16,12 +16,22 @@ const cancelCommonLetters = () => {
   name1Element.textContent = "";
   name2Element.textContent = "";
 
-  let name1List = document.getElementById("Name-1").value.toUpperCase().split("");
-  let name2List = document.getElementById("Name-2").value.toUpperCase().split("");
-  let cut1List = document.getElementById("Name-1").value.toUpperCase().split("");
-  let cut2List = document.getElementById("Name-2").value.toUpperCase().split("");
-
-
+  let name1List = document
+    .getElementById("Name-1")
+    .value.toUpperCase()
+    .split("");
+  let name2List = document
+    .getElementById("Name-2")
+    .value.toUpperCase()
+    .split("");
+  let cut1List = document
+    .getElementById("Name-1")
+    .value.toUpperCase()
+    .split("");
+  let cut2List = document
+    .getElementById("Name-2")
+    .value.toUpperCase()
+    .split("");
 
   for (let i = 0; i < name1List.length; i++) {
     for (let j = 0; j < name2List.length; j++) {
@@ -50,9 +60,9 @@ const cancelCommonLetters = () => {
     }
   }
 
-  console.log(name1List);
-  console.log(name2List);
-  console.log("step is " + step);
+  // console.log(name1List);
+  // console.log(name2List);
+  // console.log("step is " + step);
 };
 
 const loadFlames = () => {
@@ -63,26 +73,23 @@ const loadFlames = () => {
   flamesElement.innerHTML += `<span id="letter3">M</span>`;
   flamesElement.innerHTML += `<span id="letter4">E</span>`;
   flamesElement.innerHTML += `<span id="letter5">S</span>`;
-}
+};
 
-const cutLetters = (name1List, name2List, i) => {};
-
+//const cutLetters = (name1List, name2List, i) => {};
 
 const doFlames = () => {
-  if (count == 5)
-  {
+  if (count == 5) {
     index = visited.findIndex((element) => {
-      return element==false;
-    })
+      return element == false;
+    });
     let spanElement = document.getElementById(`letter${index}`);
     spanElement.classList.add("text-danger");
     return;
-  } 
-  else {
-    let currentStep =0;
-    while(currentStep<step){
-      index = (index+1)%6;
-      if(visited[index]==false){
+  } else {
+    let currentStep = 0;
+    while (currentStep < step) {
+      index = (index + 1) % 6;
+      if (visited[index] == false) {
         currentStep++;
       }
       console.log("index increased to" + index);
@@ -90,22 +97,21 @@ const doFlames = () => {
     let spanElement = document.getElementById(`letter${index}`);
     spanElement.classList.add("text-decoration-line-through");
     visited[index] = true;
-    console.log(visited);
+    //console.log(visited);
     count++;
-    console.log("count is " + count);
+    //console.log("count is " + count);
     setTimeout(doFlames, 1000);
   }
 };
 
-
-const clearPreviousData=() => {
-  count=0;
-  step=0;
-  index=-1;
+const clearPreviousData = () => {
+  count = 0;
+  step = 0;
+  index = -1;
   let flamesElement = document.getElementById("FLAMES");
   flamesElement.textContent = "";
   visited = [false, false, false, false, false, false];
-}
+};
 
 const handleClick = () => {
   clearPreviousData();
@@ -113,4 +119,4 @@ const handleClick = () => {
   cancelCommonLetters();
   loadFlames();
   doFlames();
-}
+};
